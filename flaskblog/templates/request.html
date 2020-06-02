@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <form method="POST" action="" class="form">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Enter an email</legend>
+            <div class="form_item">
+                {{ form.email.label(class="form_item_label")}}
+                {% if form.email.errors %}
+                    {{ form.email(class="form_item_input bad_input")}}
+                    {% for error in form.email.errors%}
+                        <span class="bad_input_text">{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.email(class="form_item_input")}}
+                {% endif %}
+            </div>
+
+            <div class="form_item">
+                {{ form.submit(class="form_item_input submit")}}
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="post">
+        <a class="name" href="{{ url_for('users.user_posts', username=post.author.username)}}"><img src="{{ url_for('static', filename="profile_pictures/" + post.author.img)}}"
+                                                                    alt="Posts author image." class="article_img"></a>
+        <div class="content">
+            <div class="metadata" style="justify-content: space-between">
+                <div class="flex_row">
+                    <p><a class="name" href="{{ url_for('users.user_posts', username=post.author.username)}}">{{ post.author.username}}</a></p>
+                    <p class="date">{{post.posted_date.strftime("%a %m %Y")}}</p>
+                </div>
+                {% if post.author.username == current_user.username%}
+                    <div class="flex_row">
+                        <p><a class="name" href="{{url_for('posts.edit_post', post_id = post.id)}}"><i class="fas fa-edit"></i> Edit</a></p>
+                        <p class="name"><a class="name" id="delete" href="{{url_for('posts.delete_post', post_id = post.id)}}"><i class="fas fa-trash-alt"></i> Delete</a></p>
+                    </div>
+                {% endif %}
+            </div>
+            <h2><a href="{{url_for('posts.post', post_id = post.id)}}">{{post.title}}</a></h2>
+            <p>{{post.content}}</p>
+        </div>
+    </div>
+{% endblock content%}

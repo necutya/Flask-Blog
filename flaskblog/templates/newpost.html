@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <form method="POST" action="" class="form">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>{{ legend }}</legend>
+            <div class="form_item">
+                {{ form.title.label(class="form_item_label")}}
+                {% if form.title.errors %}
+                    {{ form.title(class="form_item_input bad_input")}}
+                    {% for error in form.title.errors%}
+                        <span class="bad_input_text">{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.title(class="form_item_input")}}
+                {% endif %}
+            </div>
+
+            <div class="form_item ">
+                {{ form.content.label(class="form_item_label ")}}
+                {% if form.content.errors %}
+                    {{ form.content(class="form_item_input bad_input text_area")}}
+                    {% for error in form.content.errors%}
+                        <span class="bad_input_text">{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ form.content(class="form_item_input text_area")}}
+                {% endif %}
+            </div>
+
+            <div class="form_item">
+                {{ form.submit(class="form_item_input submit")}}
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
